@@ -1,0 +1,180 @@
+.pokemon-type {
+    text-transform: capitalize;
+    padding: 2px 8px;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+.pokemon-stat {
+    height: 100px;
+    width: calc(100% / 7);
+    border-radius: 50px;
+    text-align: center;
+    padding: 4px;
+    color: #fff;
+}
+
+.pokemon-stat::before {
+    width: 100%;
+    height: 50px;
+    border-radius: 50%;
+    background: #fff;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.type-grass {
+    background: #93D776;
+}
+
+.type-poison {
+    background: #BC76AE;
+}
+
+.type-fire {
+    background: #FF6849;
+}
+
+.type-flying {
+    background: #85AEFF;
+}
+
+.type-water {
+    background: #59AEFF;
+}
+
+.type-bug {
+    background: #BCC949;
+}
+
+.type-normal {
+    background: #C9C9BD;
+}
+
+.type-electric {
+    background: #FFD759;
+}
+
+.type-ground {
+    background: #E5C976;
+}
+
+.type-fairy {
+    background: #FFBDFF;
+}
+
+.type-fighting {
+    background: #C97668;
+}
+
+.type-psychic {
+    background: #FF76AE;
+}
+
+.type-rock {
+    background: #C9BD85;
+}
+
+.type-steel {
+    background: #BCBDC9;
+}
+
+.type-ice {
+    background: #93E5FF;
+}
+
+.type-ghost {
+    background: #8585C9;
+}
+
+.type-dragon {
+    background: #9385F2;
+}
+
+.type-dark {
+    background: #937668;
+}
+
+.type-unknown {
+    background: #ececff;
+}
+
+.type-shadow {
+    background: #282828;
+    color: #fff;
+}
+
+.stat-hp {
+    background: #DF2140;
+}
+
+.stat-hp-meter {
+    background: #731020;
+}
+
+.stat-hp::before {
+    content: 'HP';
+}
+
+.stat-defense {
+    background: #EECD3D;
+}
+
+.stat-defense-meter {
+    background: #a0891f;
+}
+
+.stat-defense::before {
+    content: 'DEF';
+}
+
+.stat-attack {
+    background: #FF994D;
+}
+
+.stat-attack-meter {
+    background: #c36a27;
+}
+
+.stat-attack::before {
+    content: 'ATK';
+}
+
+.stat-special-attack {
+    background: #85DDFF;
+}
+
+.stat-special-attack-meter {
+    background: #1d81a8;
+}
+
+.stat-special-attack::before {
+    content: 'SpA';
+}
+
+.stat-special-defense {
+    background: #96DA83;
+}
+
+.stat-special-defense-meter {
+    background: #589547;
+}
+
+.stat-special-defense::before {
+    content: 'SpD';
+}
+
+.stat-speed {
+    background: #FB94A8;
+}
+
+.stat-speed-meter {
+    background: #e85472;
+}
+
+.stat-speed::before {
+    content: 'SPD';
+}
