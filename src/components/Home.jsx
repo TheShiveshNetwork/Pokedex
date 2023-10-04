@@ -35,7 +35,12 @@ const Home = () => {
                         ${openPokemonInfo ? 'lg:grid-cols-3 xl:pl-10 w-[70%] relative left-[30%]' : 'lg:grid-cols-4'}`
                 }>
                 {search ?
-                    <></> :
+                    pokemons?.results?.filter(pokemon => {
+                        if (pokemon.name.toLowerCase().includes(search.toLowerCase())) return pokemon
+                    }).map((pokemon) => (
+                        <PokemonCard pokemon={pokemon} setOpenPokemonInfo={setOpenPokemonInfo} setSelectedPokemon={setSelectedPokemon} key={pokemon.url} />
+                    ))
+                    :
                     pokemons?.results?.map((pokemon) => (
                         <PokemonCard pokemon={pokemon} setOpenPokemonInfo={setOpenPokemonInfo} setSelectedPokemon={setSelectedPokemon} key={pokemon.url} />
                     ))}
