@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { fetchPokemons } from '../api/FetchApi'
 import PokemonCard from './PokemonCard'
 import PokemonInfo from './PokemonInfo';
+import Loading from './Loading';
 
 const Home = () => {
     const [pokemons, setPokemons] = useState({});
@@ -48,7 +49,7 @@ const Home = () => {
 
             {openPokemonInfo ? <PokemonInfo selectedPokemon={selectedPokemon} /> : <></>}
         </>
-        : <>Loading...</>
+        : <Loading />
 }
 
 export default Home

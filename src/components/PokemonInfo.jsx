@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { fetchPokemonAbout, fetchPokemonEvolution, fetchPokemonInfo } from '../api/FetchApi'
+import Loading from './Loading'
 
 const PokemonInfo = ({ selectedPokemon }) => {
     const [pokemonInfo, setPokemonInfo] = useState({})
@@ -81,7 +82,7 @@ const PokemonInfo = ({ selectedPokemon }) => {
                 ))}
             </div>
         </div>
-        : <>Loading...</>
+        : <Loading />
 }
 
 export default PokemonInfo
