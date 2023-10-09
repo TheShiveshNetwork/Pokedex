@@ -64,3 +64,13 @@ git push origin <branch-name>
 7. Open a Pull Request
 
 - Make a pull request! (compare your branch with the owner main branch)
+# Pull requests guidlines
+You're pull request must : 
+
+1.Have valid code that works without any sort of bugs 
+2.Please don't make duplicated pull request, just give 
+mainainers some time and you're PR is going to be reviewd
+3.If you're adding dependendices than please consider 
+using an **.gitignore** to ignore the **node_modules** 
+folder and any non-needed files
+
