@@ -25,7 +25,7 @@ COPY . .
 
 # Expose the port that the app will run on (if necessary)
 
-EXPOSE 8080
+EXPOSE 8080:8080
 
 
 # Define the command to start your application
