@@ -1,5 +1,4 @@
 import axios from "axios";
-import Axios from "axios";
 
 export const fetchPokemons = (setPokemons, setLoading) => {
     setLoading(true)
