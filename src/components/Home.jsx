@@ -47,7 +47,7 @@ const Home = () => {
                     ))}
             </div>
 
-            {openPokemonInfo ? <PokemonInfo selectedPokemon={selectedPokemon} /> : <></>}
+            {openPokemonInfo ? <PokemonInfo selectedPokemon={selectedPokemon} setInfoOpen={setOpenPokemonInfo} /> : <></>}
         </>
         : <Loading />
 }
