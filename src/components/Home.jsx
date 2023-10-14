@@ -10,10 +10,40 @@ const Home = () => {
     const [openPokemonInfo, setOpenPokemonInfo] = useState(false);
     const [selectedPokemon, setSelectedPokemon] = useState({})
     const [loading, setLoading] = useState(false)
+    const [page, setPage] = useState(0); // Track the current page
 
     useEffect(() => {
-        fetchPokemons(setPokemons, setLoading)
+        fetchPokemons(setPokemons, setLoading, page)
     }, [])
+
+    // Function to fetch more Pokémon data when scrolling to the bottom
+    const fetchMorePokemons = () => {
+        // Fetch more data based on the current page
+        fetchPokemons(setPokemons, setLoading, page + 1);
+        setPage(page + 1);
+    };
+
+    // Listen for scroll events and call fetchMorePokemons when reaching the bottom
+    useEffect(() => {
+        const handleScroll = () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollY = window.scrollY;
+
+            // Adjust the value 'your_threshold_here' to control when to load more data
+            if (windowHeight + scrollY >= documentHeight - 0.9) {
+                fetchMorePokemons();
+            }
+        };
+
+        // Attach the scroll event listener
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            // Remove the event listener when the component unmounts
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [page]);
 
     return !loading ?
         <>

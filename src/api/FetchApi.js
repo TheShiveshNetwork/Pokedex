@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const fetchPokemons = (setPokemons, setLoading) => {
+export const fetchPokemons = (setPokemons, setLoading, pageno, pokemons) => {
     setLoading(true)
-    axios.get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20')
+    axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=${pageno}&limit=20`)
         .then((response) => {
             setPokemons(response.data)
             setLoading(false)
