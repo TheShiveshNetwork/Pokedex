@@ -2,6 +2,9 @@
 
 [Live Site](https://sprightly-marshmallow-70a015.netlify.app/)
 
+## Our Awesome Contributors
+<img src="https://contrib.rocks/image?repo=TheShiveshNetwork/Pokedex" />
+
 ## Want to contribute?
 We welcome contributions.
 
