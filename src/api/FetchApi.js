@@ -1,13 +1,30 @@
 import axios from "axios";
 
-export const fetchPokemons = (setPokemons, setLoading) => {
-    setLoading(true)
-    axios.get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20')
+export const fetchPokemons = (setPokemons, setLoading, pageno, prevData) => {
+    setLoading(true);
+
+    axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=${pageno}&limit=20`)
         .then((response) => {
-            setPokemons(response.data)
-            setLoading(false)
+            const newData = response.data.results;
+            setPokemons([...prevData, ...newData]); // Append new data to existing data
+            setLoading(false);
+        })
+        .catch((error) => {
+            console.error('Error fetching data:', error);
+            setLoading(false);
         });
-}
+};
+
+
+// export const fetchPokemons = async (setLoading, pageno) => {
+//     setLoading(true)
+//     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=${pageno}&limit=20`)
+//         .then((response) => {
+//             setLoading(false)
+//             return response.data;
+//         });
+//     return response;
+// }
 
 export const fetchPokemonInfo = (url, setPokemonInfo, setLoadingInfo) => {
     setLoadingInfo(true);
