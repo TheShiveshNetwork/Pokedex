@@ -5,33 +5,41 @@ import PokemonInfo from './PokemonInfo';
 import Loading from './Loading';
 
 const Home = () => {
-    const [pokemons, setPokemons] = useState({});
+    const [pokemons, setPokemons] = useState([]); // Initialize pokemons as an empty array
     const [search, setSearch] = useState('');
     const [openPokemonInfo, setOpenPokemonInfo] = useState(false);
-    const [selectedPokemon, setSelectedPokemon] = useState({})
-    const [loading, setLoading] = useState(false)
-    const [page, setPage] = useState(0); // Track the current page
+    const [selectedPokemon, setSelectedPokemon] = useState({});
+    const [loading, setLoading] = useState(false);
+    const [pageNumber, setPageNumber] = useState(0);
+    const [scrollPosition, setScrollPosition] = useState(0);
 
     useEffect(() => {
-        fetchPokemons(setPokemons, setLoading, page)
-    }, [])
+        fetchPokemons(setPokemons, setLoading, pageNumber,pokemons); // Don't need to pass the 'pokemons' array
+    }, []);
 
-    // Function to fetch more Pokémon data when scrolling to the bottom
     const fetchMorePokemons = () => {
-        // Fetch more data based on the current page
-        fetchPokemons(setPokemons, setLoading, page + 1);
-        setPage(page + 1);
+        setPageNumber(pageNumber + 1);
+        fetchPokemons((newData) => {
+            setPokemons([...pokemons, ...newData]); // Append new data to existing data
+            setLoading(false);
+        }, setLoading, pageNumber,pokemons);
     };
 
+   
     // Listen for scroll events and call fetchMorePokemons when reaching the bottom
     useEffect(() => {
         const handleScroll = () => {
+            // console.log(window.scrollY)
             const windowHeight = window.innerHeight;
             const documentHeight = document.documentElement.scrollHeight;
             const scrollY = window.scrollY;
+            setScrollPosition(scrollY);
+            console.log(documentHeight)
 
-            // Adjust the value 'your_threshold_here' to control when to load more data
-            if (windowHeight + scrollY >= documentHeight - 0.9) {
+            // Set the threshold to halfway down the page
+            const threshold = documentHeight / 2;
+
+            if (windowHeight + scrollY >= threshold) {
                 fetchMorePokemons();
             }
         };
@@ -43,7 +51,14 @@ const Home = () => {
             // Remove the event listener when the component unmounts
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [page]);
+    }, [pageNumber]);
+
+    
+    useEffect(() => {
+        // Restore the scroll position when the data is loaded
+        window.scrollTo(0, scrollPosition);
+    }, [pokemons]); // Trigger when new data is loaded
+
 
     return !loading ?
         <>
@@ -66,14 +81,14 @@ const Home = () => {
                         ${openPokemonInfo ? 'lg:grid-cols-3 xl:pl-10 w-[70%] relative left-[30%]' : 'lg:grid-cols-4'}`
                 }>
                 {search ?
-                    pokemons?.results?.filter(pokemon => {
+                    pokemons?.filter(pokemon => {
                         if (pokemon.name.toLowerCase().includes(search.toLowerCase())) return pokemon
-                    }).map((pokemon) => (
-                        <PokemonCard pokemon={pokemon} setOpenPokemonInfo={setOpenPokemonInfo} setSelectedPokemon={setSelectedPokemon} key={pokemon.url} />
+                    }).map((pokemon,index) => (
+                        <PokemonCard pokemon={pokemon} setOpenPokemonInfo={setOpenPokemonInfo} setSelectedPokemon={setSelectedPokemon} key={index} />
                     ))
                     :
-                    pokemons?.results?.map((pokemon) => (
-                        <PokemonCard pokemon={pokemon} setOpenPokemonInfo={setOpenPokemonInfo} setSelectedPokemon={setSelectedPokemon} key={pokemon.url} />
+                    pokemons?.map((pokemon,index) => (
+                        <PokemonCard pokemon={pokemon} setOpenPokemonInfo={setOpenPokemonInfo} setSelectedPokemon={setSelectedPokemon} key={index} />
                     ))}
             </div>
 
