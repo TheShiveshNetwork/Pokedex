@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 
 const PokemonCard = ({ pokemon, setOpenPokemonInfo, setSelectedPokemon }) => {
   const handleClick = () => {
@@ -7,28 +7,43 @@ const PokemonCard = ({ pokemon, setOpenPokemonInfo, setSelectedPokemon }) => {
   }
 
   const [imageLoaded, setImageLoaded] = useState(false)
+  const ref = useRef(null)
 
   useEffect(() => {
-    const loadImage = async () => {
-      const image = await fetch(`
-        https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${pokemon.url.replace('https://pokeapi.co/api/v2/pokemon/', '').replace('/', '')}.svg`)
-
-      setImageLoaded(true)
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if(entry.isIntersecting) {
+          const img = new Image()
+          img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.url.split('/')[6]}.png`
+          img.onload = () => {
+            setImageLoaded(true)
+          }
+          observer.unobserve(ref.current)
+        }
+      },
+      {threshold: 0.5}
+    )
+    if(ref.current) {
+      observer.observe(ref.current)
     }
 
-    loadImage()
+    return () => {
+      if(ref.current) {
+        observer.unobserve(ref.current)
+      }
+    }
   }, [pokemon])
 
   return (
     <div
+      ref={ref}
       className={`bg-slate-100 cursor-pointer flex gap-4 flex-col justify-center p-4 rounded-md transition-all`}
       onClick={handleClick}
     >
       {imageLoaded ? (
         <div className='w-full h-28 flex items-center justify-center'>
           <img
-            src={`
-              https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${pokemon.url.replace('https://pokeapi.co/api/v2/pokemon/', '').replace('/', '')}.svg`}
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.url.split('/')[6]}.png`}
             className='h-full'
             alt="image"
           />
