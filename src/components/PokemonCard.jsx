@@ -50,7 +50,11 @@ const PokemonCard = ({ pokemon, setOpenPokemonInfo, setSelectedPokemon }) => {
         </div>
       ) : (
         <div className='w-full h-28 flex items-center justify-center'>
-          <div className='w-28 h-28 bg-slate-300 rounded-full' />
+          <img
+            src="/assets/pokeball.png"
+            className='h-full'
+            alt="image"
+          />
         </div>
       )}
       <h1 className='capitalize text-center font-medium text-[22px]'>{pokemon.name}</h1>
