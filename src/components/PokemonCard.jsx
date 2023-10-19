@@ -21,7 +21,7 @@ const PokemonCard = ({ pokemon, setOpenPokemonInfo, setSelectedPokemon }) => {
 
   return (
     <div
-      className={`bg-slate-100 cursor-pointer flex gap-4 flex-col justify-center p-4 rounded-md transition-all`}
+      className={`bg-slate-200 hover:bg-slate-300/30 cursor-pointer flex gap-4 flex-col justify-center p-4 rounded-md shadow-lg border-slate-300 border-2 transition-all`}
       onClick={handleClick}
     >
       {imageLoaded ? (
@@ -38,7 +38,7 @@ const PokemonCard = ({ pokemon, setOpenPokemonInfo, setSelectedPokemon }) => {
           <div className='w-28 h-28 bg-slate-300 rounded-full' />
         </div>
       )}
-      <h1 className='capitalize text-center font-medium text-[22px]'>{pokemon.name}</h1>
+      <h1 className='capitalize text-center font-medium text-[25px]'>{pokemon.name}</h1>
     </div>
   )
 }

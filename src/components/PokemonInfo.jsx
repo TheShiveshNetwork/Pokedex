@@ -20,9 +20,9 @@ const PokemonInfo = ({ selectedPokemon, setInfoOpen }) => {
     console.log(pokemonEvolution)
 
     return !loadingInfo ?
-        <div className='lg:w-[30vw] h-full fixed left-0 top-0 bg-gray-100 shadow-sm shadow-slate-300 px-6 py-6 overflow-y-scroll'>
+        <div className='lg:w-[30vw] h-full fixed left-0 top-0 bg-slate-200 shadow-sm shadow-slate-400 px-6 py-6 overflow-y-scroll'>
             <div
-            className='absolute top-5 right-5 bg-slate-200 shadow-md h-14 w-14 p-2 rounded-full flex items-center justify-center cursor-pointer'
+            className='absolute top-5 right-5 bg-slate-400/50 shadow-md h-14 w-14 p-2 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-500/60 transition-all'
             onClick={() => setInfoOpen(false)}
             >
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.207 6.207a1 1 0 0 0-1.414-1.414L12 10.586 6.207 4.793a1 1 0 0 0-1.414 1.414L10.586 12l-5.793 5.793a1 1 0 1 0 1.414 1.414L12 13.414l5.793 5.793a1 1 0 0 0 1.414-1.414L13.414 12l5.793-5.793z" fill="#000000"></path></g></svg>
@@ -33,7 +33,7 @@ const PokemonInfo = ({ selectedPokemon, setInfoOpen }) => {
                     alt="image"
                     className='w-[70%]'
                 />
-                <h1 className='capitalize text-3xl text-center'>{selectedPokemon.name}</h1>
+                <h1 className='capitalize text-3xl font-medium text-center'>{selectedPokemon.name}</h1>
             </div>
 
             <div className='flex flex-wrap w-full gap-4 justify-center my-3'>
@@ -51,13 +51,13 @@ const PokemonInfo = ({ selectedPokemon, setInfoOpen }) => {
             <div className='flex gap-[14px] w-full flex-wrap text-center mt-8'>
                 <div className='w-[calc(50%-7px)] flex items-center justify-center flex-col'>
                     <h3 className='text-lg font-medium'>Height</h3>
-                    <div className='w-full text-center bg-slate-300 rounded-md py-2 mt-3'>
+                    <div className='w-full text-center font-semibold text-slate-50 bg-green-700/75 rounded-full py-2 mt-3'>
                         {pokemonInfo.height}m
                     </div>
                 </div>
                 <div className='w-[calc(50%-7px)] flex items-center justify-center flex-col'>
                     <h3 className='text-lg font-medium'>Weight</h3>
-                    <div className='w-full text-center bg-slate-300 rounded-md py-2 mt-3'>
+                    <div className='w-full text-center font-semibold text-slate-50 bg-yellow-500/60 rounded-full py-2 mt-3'>
                         {pokemonInfo.weight}kg
                     </div>
                 </div>
