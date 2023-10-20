@@ -57,7 +57,7 @@ const PokemonCard = ({ pokemon, setOpenPokemonInfo, setSelectedPokemon }) => {
           />
         </div>
       )}
-      <h1 className='capitalize text-center font-medium text-[22px]'>{pokemon.name}</h1>
+      <h1 className='capitalize text-center font-medium text-[25px]'>{pokemon.name}</h1>
     </div>
   )
 }

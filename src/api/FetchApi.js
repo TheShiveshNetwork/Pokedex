@@ -3,11 +3,11 @@ import axios from "axios";
 export const fetchPokemons = (setPokemons, setLoading) => {
     setLoading(true)
     axios.get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1017')
-        .then((response) => {
-            setPokemons(response.data)
-            setLoading(false)
-        });
-}
+    .then((response) => {
+        setPokemons(response.data); // Append new data to existing data
+        setLoading(false);
+    })
+};
 
 export const fetchPokemonInfo = (url, setPokemonInfo, setLoadingInfo) => {
     setLoadingInfo(true);
