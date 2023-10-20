@@ -32,6 +32,10 @@ const PokemonInfo = ({ selectedPokemon, setInfoOpen }) => {
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
                     alt="image"
                     className='w-[70%]'
+                    onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "/assets/pokeball.png";
+                    }}
                 />
                 <h1 className='capitalize text-3xl font-medium text-center'>{selectedPokemon.name}</h1>
             </div>
