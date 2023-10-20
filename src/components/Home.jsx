@@ -10,54 +10,10 @@ const Home = () => {
     const [openPokemonInfo, setOpenPokemonInfo] = useState(false);
     const [selectedPokemon, setSelectedPokemon] = useState({});
     const [loading, setLoading] = useState(false);
-    const [pageNumber, setPageNumber] = useState(0);
-    const [scrollPosition, setScrollPosition] = useState(0);
 
     useEffect(() => {
-        fetchPokemons(setPokemons, setLoading, pageNumber,pokemons); // Don't need to pass the 'pokemons' array
+        fetchPokemons(setPokemons, setLoading);
     }, []);
-
-    const fetchMorePokemons = () => {
-        setPageNumber(pageNumber + 1);
-        fetchPokemons((newData) => {
-            setPokemons([...pokemons, ...newData]); // Append new data to existing data
-            setLoading(false);
-        }, setLoading, pageNumber,pokemons);
-    };
-
-   
-    // Listen for scroll events and call fetchMorePokemons when reaching the bottom
-    useEffect(() => {
-        const handleScroll = () => {
-            // console.log(window.scrollY)
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const scrollY = window.scrollY;
-            setScrollPosition(scrollY);
-            console.log(documentHeight)
-
-            // Set the threshold to halfway down the page
-            const threshold = documentHeight / 2;
-
-            if (windowHeight + scrollY >= threshold) {
-                fetchMorePokemons();
-            }
-        };
-
-        // Attach the scroll event listener
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            // Remove the event listener when the component unmounts
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [pageNumber]);
-
-    
-    useEffect(() => {
-        // Restore the scroll position when the data is loaded
-        window.scrollTo(0, scrollPosition);
-    }, [pokemons]); // Trigger when new data is loaded
 
 
     return !loading ?
@@ -81,13 +37,13 @@ const Home = () => {
                         ${openPokemonInfo ? 'lg:grid-cols-3 xl:pl-10 w-[70%] relative left-[30%]' : 'lg:grid-cols-4'}`
                 }>
                 {search ?
-                    pokemons?.filter(pokemon => {
+                    pokemons?.results?.filter(pokemon => {
                         if (pokemon.name.toLowerCase().includes(search.toLowerCase())) return pokemon
                     }).map((pokemon,index) => (
                         <PokemonCard pokemon={pokemon} setOpenPokemonInfo={setOpenPokemonInfo} setSelectedPokemon={setSelectedPokemon} key={index} />
                     ))
                     :
-                    pokemons?.map((pokemon,index) => (
+                    pokemons?.results?.map((pokemon,index) => (
                         <PokemonCard pokemon={pokemon} setOpenPokemonInfo={setOpenPokemonInfo} setSelectedPokemon={setSelectedPokemon} key={index} />
                     ))}
             </div>
