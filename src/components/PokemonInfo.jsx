@@ -29,9 +29,13 @@ const PokemonInfo = ({ selectedPokemon, setInfoOpen }) => {
             </div>
             <div className='w-full flex flex-col gap-8 items-center justify-center '>
                 <img
-                    src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${id}.svg`}
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
                     alt="image"
                     className='w-[70%]'
+                    onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "/assets/pokeball.png";
+                    }}
                 />
                 <h1 className='capitalize text-3xl font-medium text-center'>{selectedPokemon.name}</h1>
             </div>
