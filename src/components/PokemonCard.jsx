@@ -18,7 +18,11 @@ const PokemonCard = ({ pokemon, setOpenPokemonInfo, setSelectedPokemon }) => {
           img.onload = () => {
             setImageLoaded(true)
           }
-          observer.unobserve(ref.current)
+          try{
+            observer.unobserve(ref.current)
+          } catch(err) {
+            console.log(err)
+          }
         }
       },
       {threshold: 0.5}
@@ -29,7 +33,11 @@ const PokemonCard = ({ pokemon, setOpenPokemonInfo, setSelectedPokemon }) => {
 
     return () => {
       if(ref.current) {
-        observer.unobserve(ref.current)
+        try{
+          observer.unobserve(ref.current)
+        } catch(err) {
+          console.log(err)
+        }
       }
     }
   }, [pokemon])
