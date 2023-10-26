@@ -4,7 +4,7 @@ import PokemonCard from './PokemonCard'
 import PokemonInfo from './PokemonInfo';
 import Loading from './Loading';
 
-import kantoData from './version-data.json';
+import kantoData from './data/version-data.json';
 
 const Home = () => {
     const [pokemons, setPokemons] = useState([]); // Initialize pokemons as an empty array
@@ -23,6 +23,7 @@ const Home = () => {
     const filter = () => {
         setShowFilters(!showFilters);
         setGeneration('');
+        setGameVersion('');
     }
 
     return !loading ?
