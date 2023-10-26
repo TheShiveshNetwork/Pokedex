@@ -4,7 +4,7 @@ import PokemonCard from './PokemonCard'
 import PokemonInfo from './PokemonInfo';
 import Loading from './Loading';
 
-import kantoData from './data/version-data.json';
+import VersionData from './data/version-data.json';
 
 const Home = () => {
     const [pokemons, setPokemons] = useState([]); // Initialize pokemons as an empty array
@@ -124,7 +124,7 @@ const Home = () => {
                         ?.filter((pokemon) => {
                             if (gameVersion) {
                                 const pokemonId = pokemon.url.split('/')[6];
-                                return kantoData[gameVersion].Pokemon.some((kantoPokemon) => kantoPokemon.url === pokemonId);
+                                return VersionData[gameVersion].Pokemon.some((kantoPokemon) => kantoPokemon.url === pokemonId);
                             }
                             return true;
                         })
@@ -144,8 +144,7 @@ const Home = () => {
                         ?.filter((pokemon) => {
                             if (gameVersion) {
                                 const pokemonId = pokemon.url.split('/')[6];
-                                if(kantoData[gameVersion].Pokemon.some((kantoPokemon) => kantoPokemon.url === pokemonId)) console.log(true)
-                                return kantoData[gameVersion].Pokemon.some((kantoPokemon) => kantoPokemon.url === pokemonId);
+                                return VersionData[gameVersion].Pokemon.some((kantoPokemon) => kantoPokemon.url === pokemonId);
                             }
                             return true;
                         })
