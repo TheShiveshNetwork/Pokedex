@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const SelectCompoent = ({ valueFor, value, setValue }) => {
+    const [selectOptionClicked, setSelectOptionClicked] = useState(false);
+
+    const handleSelectChange = (e) => {
+        if (e.target.value) {
+            setSelectOptionClicked(true);
+        }
+        setValue(e.target.value)
+    }
+
     return (
         <select
             value={value}
-            onChange={(e) => setValue(e.target.value)}
-            className="outline-none border-2 py-1 px-5 text-md rounded-full cursor-pointer"
+            onChange={(e) => handleSelectChange(e)}
+            // className={`outline-none border-2 py-1 px-5 text-md rounded-full cursor-pointer ${selectOptionClicked && 'bg-red-400'}`}
+            className={`outline-none border-2 py-1 px-5 text-md rounded-full cursor-pointer`}
         >
             {
                 valueFor === "generation" ?

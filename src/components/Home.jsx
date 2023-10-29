@@ -38,7 +38,7 @@ const Home = () => {
                     className="outline-none w-full border-2 py-3 px-5 text-lg rounded-full"
                 />
 
-                <div className='flex justify-end gap-3 mt-3'>
+                <div className='flex justify-center flex-col md:flex-row md:justify-end gap-3 mt-3'>
                     <SelectCompoent
                         valueFor={"generation"}
                         value={generation}
