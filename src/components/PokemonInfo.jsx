@@ -56,13 +56,13 @@ const PokemonInfo = ({ selectedPokemon, setInfoOpen }) => {
                 <div className='w-[calc(50%-7px)] flex items-center justify-center flex-col'>
                     <h3 className='text-lg font-medium'>Height</h3>
                     <div className='w-full text-center font-semibold text-slate-50 bg-green-700/75 rounded-full py-2 mt-3'>
-                        {pokemonInfo.height}m
+                        {pokemonInfo.height / 10}m
                     </div>
                 </div>
                 <div className='w-[calc(50%-7px)] flex items-center justify-center flex-col'>
                     <h3 className='text-lg font-medium'>Weight</h3>
                     <div className='w-full text-center font-semibold text-slate-50 bg-yellow-500/60 rounded-full py-2 mt-3'>
-                        {pokemonInfo.weight}kg
+                        {pokemonInfo.weight / 10}kg
                     </div>
                 </div>
             </div>
