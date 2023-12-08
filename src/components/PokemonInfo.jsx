@@ -27,7 +27,7 @@ const PokemonInfo = ({ selectedPokemon, setInfoOpen }) => {
             dark:bg-slate-600 dark:hover:bg-slate-500 dark:text-slate-50'
             onClick={() => setInfoOpen(false)}
             >
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.207 6.207a1 1 0 0 0-1.414-1.414L12 10.586 6.207 4.793a1 1 0 0 0-1.414 1.414L10.586 12l-5.793 5.793a1 1 0 1 0 1.414 1.414L12 13.414l5.793 5.793a1 1 0 0 0 1.414-1.414L13.414 12l5.793-5.793z" fill="#000000"></path></g></svg>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path fillRule="evenodd" clipRule="evenodd" d="M19.207 6.207a1 1 0 0 0-1.414-1.414L12 10.586 6.207 4.793a1 1 0 0 0-1.414 1.414L10.586 12l-5.793 5.793a1 1 0 1 0 1.414 1.414L12 13.414l5.793 5.793a1 1 0 0 0 1.414-1.414L13.414 12l5.793-5.793z" fill="#000000"></path></g></svg>
             </div>
             <div className='w-full flex flex-col gap-8 items-center justify-center '>
                 <img
@@ -58,13 +58,13 @@ const PokemonInfo = ({ selectedPokemon, setInfoOpen }) => {
                 <div className='w-[calc(50%-7px)] flex items-center justify-center flex-col'>
                     <h3 className='text-lg font-medium'>Height</h3>
                     <div className='w-full text-center font-semibold text-slate-50 bg-green-700/75 rounded-full py-2 mt-3'>
-                        {pokemonInfo.height}m
+                        {pokemonInfo.height / 10}m
                     </div>
                 </div>
                 <div className='w-[calc(50%-7px)] flex items-center justify-center flex-col'>
                     <h3 className='text-lg font-medium'>Weight</h3>
                     <div className='w-full text-center font-semibold text-slate-50 bg-yellow-500/60 rounded-full py-2 mt-3'>
-                        {pokemonInfo.weight}kg
+                        {pokemonInfo.weight / 10}kg
                     </div>
                 </div>
             </div>
