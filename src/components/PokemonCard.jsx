@@ -37,7 +37,8 @@ const PokemonCard = ({ pokemon, setOpenPokemonInfo, setSelectedPokemon }) => {
   return (
     <div
       ref={ref}
-      className={`bg-slate-200 hover:bg-slate-300/30 cursor-pointer flex gap-4 flex-col justify-center p-4 rounded-md shadow-lg border-slate-300 border-2 transition-all`}
+      className={`bg-slate-200 hover:bg-slate-300/30 cursor-pointer flex gap-4 flex-col justify-center p-4 rounded-md shadow-lg border-slate-300 border-2 transition-all transform hover:scale-105 
+      dark:bg-slate-800 dark:border-slate-700 dark:hover:bg-slate-700 dark:hover:bg-opacity-30 dark:hover:border-slate-600 dark:text-slate-50`}
       onClick={handleClick}
     >
       {imageLoaded ? (
