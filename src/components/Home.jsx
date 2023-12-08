@@ -44,14 +44,13 @@ const Home = () => {
                 className={
                     `xl:px-24 px-10 mt-8 py-4 sticky top-0 bg-white dark:bg-slate-900 ${openPokemonInfo ? 'xl:pl-10 w-[70%] relative left-[30%]' : ''}`
                 }>
-                className={`xl:px-24 px-10 mt-8 py-4 sticky top-0 bg-white ${openPokemonInfo ? 'xl:pl-10 w-[70%] relative left-[30%]' : ''}`}
-            >
                 <input
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     type="text"
                     placeholder="Search"
-                    className="outline-none w-full border-2 py-3 px-5 text-lg rounded-full"
+                    className='outline-none w-full border-2 py-3 px-5 text-lg rounded-full 
+                    dark:bg-slate-800 dark:text-slate-50'
                 />
 
                 <div className='flex justify-center flex-col md:flex-row md:justify-end gap-3 mt-3'>
@@ -65,11 +64,10 @@ const Home = () => {
                         value={gameVersion}
                         setValue={setGameVersion}
                     />
+                    <button onClick={toggleDarkMode} className='text-xl mg-5'>
+                        {isDarkMode ? `☀` : `🌕`}
+                    </button> 
                 </div>
-                
-                <button onClick={toggleDarkMode} className='text-xl mg-5'>
-                    {isDarkMode ? `☀` : `🌕`}
-                </button> 
             </div>
 
             <div
