@@ -18,7 +18,9 @@ const Home = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
 
     const toggleDarkMode = () => {
-      setIsDarkMode(!isDarkMode);
+      const newTheme = !isDarkMode;
+    setIsDarkMode(newTheme);
+    localStorage.setItem('isDarkMode', JSON.stringify(newTheme));
     };
 
     useEffect(() => {
@@ -32,6 +34,13 @@ const Home = () => {
     useEffect(() => {
         fetchPokemons(setPokemons, setLoading, generation);
     }, [generation]);
+
+    useEffect(() => {
+        const storedTheme = localStorage.getItem('isDarkMode');
+        if (storedTheme) {
+          setIsDarkMode(JSON.parse(storedTheme));
+        }
+      }, []);
 
     const filter = () => {
         setGeneration('');
