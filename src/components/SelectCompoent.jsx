@@ -15,7 +15,7 @@ const SelectCompoent = ({ valueFor, value, setValue }) => {
             value={value}
             onChange={(e) => handleSelectChange(e)}
             // className={`outline-none border-2 py-1 px-5 text-md rounded-full cursor-pointer ${selectOptionClicked && 'bg-red-400'}`}
-            className={`outline-none border-2 py-1 px-5 text-md rounded-full cursor-pointer`}
+            className={`outline-none border-2 py-1 px-5 text-md rounded-full cursor-pointer dark:bg-slate-800 dark:text-slate-50`}
         >
             {
                 valueFor === "generation" ?
