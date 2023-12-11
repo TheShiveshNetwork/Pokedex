@@ -20,54 +20,9 @@ const Home = () => {
     const [isHomeTheme, setIsHomeTheme] = useState(false);
     const [theme, setTheme] = useState('');
 
-    const toggleDarkMode = () => {
-        const newTheme = !isDarkMode;
-        setIsDarkMode(newTheme);
-        setIsHomeTheme(false);
-        setIsGameboyTheme(false);
-        localStorage.setItem('isDarkMode', JSON.stringify(newTheme));
-        localStorage.setItem('isHomeMode', JSON.stringify(false));
-        localStorage.setItem('isGBMode', JSON.stringify(false));
-    };
-
-    const toggleHomeMode = () => {
-        const newTheme = !isHomeTheme;
-        setIsHomeTheme(newTheme);
-        localStorage.setItem('isHomeMode', JSON.stringify(newTheme));
-    };
-
-    const toggleGameboyMode = () => {
-        const newTheme = !isGameboyTheme;
-        setIsHomeTheme(newTheme);
-        localStorage.setItem('isGBMode', JSON.stringify(newTheme));
-    };
-
     const handleTheme = () => {
         const theme = document.getElementById('themeSel').value;
         handleThemeChange(theme);
-        // switch (theme) {
-        //     case 'dark':
-        //         toggleDarkMode();
-        //         // setIsDarkMode(true);
-        //         // setIsGameboyTheme(false);
-        //         // setIsHomeTheme(false);
-        //         break;
-        //     case 'gameboy':
-        //         toggleGameboyMode();
-        //         // setIsGameboyTheme(true);
-        //         // setIsDarkMode(false);
-        //         // setIsHomeTheme(false);
-        //         break;
-        //     case 'home':
-        //         toggleHomeMode();
-        //         // setIsHomeTheme(true);
-        //         // setIsDarkMode(false);
-        //         // setIsGameboyTheme(false);
-        //         break;
-        //     default:
-        //         toggleDarkMode();
-        //         break;
-        // }
     };
 
     useEffect(() => {
@@ -134,16 +89,6 @@ useEffect(() => {
                 setIsHomeTheme(false);
                 break;
         }
-        // if( {
-        //     setIsDarkMode(JSON.parse(localStorage.getItem('isDarkMode')));
-        // } else if(localStorage.getItem('isGBMode')) {
-        //     setIsGameboyTheme(JSON.parse(localStorage.getItem('isGBMode')));
-        // } else if(localStorage.getItem('isHomeMode')) {
-        //     setIsHomeTheme(JSON.parse(localStorage.getItem('isHomeMode')));
-        // }
-        // if (storedTheme) {
-        //   setIsDarkMode(JSON.parse(storedTheme));
-        // }
       }, []);
 
     const filter = () => {
