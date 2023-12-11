@@ -121,12 +121,12 @@ useEffect(() => {
                         value={gameVersion}
                         setValue={setGameVersion}
                     />
-                    <select id="themeSel" onChange={handleTheme} className='outline-none border-2 py-1 px-5 text-md rounded-full cursor-pointer dark:bg-slate-800 dark:text-slate-50'>
-                        <option value="">Light</option>
-                        <option value="dark" selected={theme == "dark"}>Dark</option>
-                        <option value="gameboy" selected={theme == "gameboy"}>Gameboy</option>
-                        <option value="home" selected={theme == "home"}>Pokemon Home</option>
-                    </select>
+                    <SelectCompoent
+                        valueFor={"theme"}
+                        value={theme}
+                        setValue={handleThemeChange}
+                        id={"themeSel"}
+                    />
                 </div>
             </div>
 
