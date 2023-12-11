@@ -18,16 +18,101 @@ const Home = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [isGameboyTheme, setIsGameboyTheme] = useState(false);
     const [isHomeTheme, setIsHomeTheme] = useState(false);
+    const [theme, setTheme] = useState('');
 
     const toggleDarkMode = () => {
-      const newTheme = !isDarkMode;
+        const newTheme = !isDarkMode;
         setIsDarkMode(newTheme);
+        setIsHomeTheme(false);
+        setIsGameboyTheme(false);
         localStorage.setItem('isDarkMode', JSON.stringify(newTheme));
+        localStorage.setItem('isHomeMode', JSON.stringify(false));
+        localStorage.setItem('isGBMode', JSON.stringify(false));
+    };
+
+    const toggleHomeMode = () => {
+        const newTheme = !isHomeTheme;
+        setIsHomeTheme(newTheme);
+        localStorage.setItem('isHomeMode', JSON.stringify(newTheme));
+    };
+
+    const toggleGameboyMode = () => {
+        const newTheme = !isGameboyTheme;
+        setIsHomeTheme(newTheme);
+        localStorage.setItem('isGBMode', JSON.stringify(newTheme));
     };
 
     const handleTheme = () => {
         const theme = document.getElementById('themeSel').value;
-        switch (theme) {
+        handleThemeChange(theme);
+        // switch (theme) {
+        //     case 'dark':
+        //         toggleDarkMode();
+        //         // setIsDarkMode(true);
+        //         // setIsGameboyTheme(false);
+        //         // setIsHomeTheme(false);
+        //         break;
+        //     case 'gameboy':
+        //         toggleGameboyMode();
+        //         // setIsGameboyTheme(true);
+        //         // setIsDarkMode(false);
+        //         // setIsHomeTheme(false);
+        //         break;
+        //     case 'home':
+        //         toggleHomeMode();
+        //         // setIsHomeTheme(true);
+        //         // setIsDarkMode(false);
+        //         // setIsGameboyTheme(false);
+        //         break;
+        //     default:
+        //         toggleDarkMode();
+        //         break;
+        // }
+    };
+
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme !== null) {
+            setTheme(savedTheme);
+        }
+    }, []);
+
+    const handleThemeChange = (newTheme) => {
+        setTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
+    };
+
+useEffect(() => {
+    if (theme === 'dark') {
+        document.documentElement.classList.add('dark', 'bg-slate-900', 'text-slate-50');
+    } else {
+        document.documentElement.classList.remove('dark', 'bg-slate-900', 'text-slate-50');
+    } 
+}, [theme]);
+
+useEffect(() => {
+    if (theme === 'gameboy') {
+        document.documentElement.classList.add('gb', 'bg-gameboy-bg', 'text-gameboy-bg');
+    } else {
+        document.documentElement.classList.remove('gb', 'bg-gameboy-bg', 'text-gameboy-bg');
+    } 
+}, [theme]);
+
+useEffect(() => {
+    if (theme === 'home') {
+        document.documentElement.classList.add('home', 'bg-gradient-to-r', 'from-home-bg', 'via-home-midbg', 'to-home-endbg',  'text-home-text');
+    } else {
+        document.documentElement.classList.remove('home', 'bg-gradient-to-r', 'from-home-bg', 'via-home-midbg', 'to-home-endbg', 'text-home-text');
+    } 
+}, [theme]);
+
+    useEffect(() => {
+        fetchPokemons(setPokemons, setLoading, generation);
+    }, [generation]);
+
+    useEffect(() => {
+        const storedTheme = localStorage.getItem('theme');
+        switch (storedTheme) {
             case 'dark':
                 setIsDarkMode(true);
                 setIsGameboyTheme(false);
@@ -44,46 +129,21 @@ const Home = () => {
                 setIsGameboyTheme(false);
                 break;
             default:
-                setIsHomeTheme(false);
                 setIsDarkMode(false);
                 setIsGameboyTheme(false);
+                setIsHomeTheme(false);
                 break;
         }
-    };
-
-    useEffect(() => {
-        if (isDarkMode) {
-            document.documentElement.classList.add('dark', 'bg-slate-900', 'text-slate-50');
-          } else {
-            document.documentElement.classList.remove('dark', 'bg-slate-900', 'text-slate-50');
-          } 
-    }, [isDarkMode]);
-
-    useEffect(() => {
-        if (isGameboyTheme) {
-            document.documentElement.classList.add('gb', 'bg-gameboy-bg', 'text-gameboy-bg');
-          } else {
-            document.documentElement.classList.remove('gb', 'bg-gameboy-bg', 'text-gameboy-bg');
-          } 
-    }, [isGameboyTheme]);
-
-    useEffect(() => {
-        if (isHomeTheme) {
-            document.documentElement.classList.add('home', 'bg-gradient-to-r', 'from-home-bg', 'via-home-midbg', 'to-home-endbg',  'text-home-text');
-          } else {
-            document.documentElement.classList.remove('home', 'bg-gradient-to-r', 'from-home-bg', 'via-home-midbg', 'to-home-endbg', 'text-home-text');
-          } 
-    }, [isHomeTheme]);
-
-    useEffect(() => {
-        fetchPokemons(setPokemons, setLoading, generation);
-    }, [generation]);
-
-    useEffect(() => {
-        const storedTheme = localStorage.getItem('isDarkMode');
-        if (storedTheme) {
-          setIsDarkMode(JSON.parse(storedTheme));
-        }
+        // if( {
+        //     setIsDarkMode(JSON.parse(localStorage.getItem('isDarkMode')));
+        // } else if(localStorage.getItem('isGBMode')) {
+        //     setIsGameboyTheme(JSON.parse(localStorage.getItem('isGBMode')));
+        // } else if(localStorage.getItem('isHomeMode')) {
+        //     setIsHomeTheme(JSON.parse(localStorage.getItem('isHomeMode')));
+        // }
+        // if (storedTheme) {
+        //   setIsDarkMode(JSON.parse(storedTheme));
+        // }
       }, []);
 
     const filter = () => {
@@ -93,10 +153,10 @@ const Home = () => {
 
     return !loading ?
         <>
-            <div
-                className={
-                    `xl:px-24 px-10 mt-8 py-4 sticky top-0 dark:bg-slate-900  ${openPokemonInfo ? 'xl:pl-10 w-[70%] relative left-[30%]' : ''}`
-                }>
+<div
+    className={
+        `xl:px-24 px-10 mt-8 py-4 sticky top-0 dark:bg-slate-900  ${openPokemonInfo ? 'xl:pl-10 w-[70%] relative left-[30%]' : ''}`
+    }>
                 <input
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
@@ -118,9 +178,9 @@ const Home = () => {
                     />
                     <select id="themeSel" onChange={handleTheme} className='outline-none border-2 py-1 px-5 text-md rounded-full cursor-pointer dark:bg-slate-800 dark:text-slate-50'>
                         <option value="">Light</option>
-                        <option value="dark">Dark</option>
-                        <option value="gameboy">Gameboy</option>
-                        <option value="home">Pokemon Home</option>
+                        <option value="dark" selected={theme == "dark"}>Dark</option>
+                        <option value="gameboy" selected={theme == "gameboy"}>Gameboy</option>
+                        <option value="home" selected={theme == "home"}>Pokemon Home</option>
                     </select>
                 </div>
             </div>

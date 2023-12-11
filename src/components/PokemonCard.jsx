@@ -8,20 +8,6 @@ const PokemonCard = ({ pokemon, setOpenPokemonInfo, setSelectedPokemon }) => {
 
   const [imageLoaded, setImageLoaded] = useState(false)
   const [pokeArtwork, setPokeArtwork] = useState('other/official-artwork')
-  const [theme, setTheme] = useState(''); // default or gameboy
-
-  useEffect(() => {
-    const themeSel = document.getElementById('themeSel');
-
-    if (themeSel.value === 'gameboy') {
-      setTheme('gameboy');
-    } else if (themeSel.value === 'home') {
-      setTheme('home');
-    } else {
-      setTheme('');
-    }
-  }, []);
-
 
   const ref = useRef(null)
 

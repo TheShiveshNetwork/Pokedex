@@ -20,6 +20,8 @@ const PokemonInfo = ({ selectedPokemon, setInfoOpen }) => {
     useEffect(() => {
         if(document.getElementById('themeSel').value === 'gameboy') {
           setPokeArtwork('')
+        } else if(document.getElementById('themeSel').value === 'home') {
+            setPokeArtwork('other/home')
         } else {
           setPokeArtwork('other/official-artwork')
         }
@@ -28,7 +30,14 @@ const PokemonInfo = ({ selectedPokemon, setInfoOpen }) => {
     // console.log(pokemonInfo)
     console.log(pokemonEvolution)
     const themeSelElement = document.getElementById('themeSel');
-    const pokemonCardDivClass = themeSelElement && themeSelElement.value === 'gameboy' ? 'bg-gameboy-bg text-slate-200' : 'bg-slate-200';
+    let pokemonCardDivClass = 'bg-slate-200 border-slate-300';
+    if(themeSelElement && themeSelElement.value === 'gameboy') {
+      pokemonCardDivClass = 'bg-gameboy-bg text-slate-200';
+    } else if (themeSelElement && themeSelElement.value === 'home') {
+      pokemonCardDivClass = 'bg-home-card shadow-slate-200';
+    } else {
+      pokemonCardDivClass = 'bg-slate-200 border-slate-300';
+    }
 
     return !loadingInfo ?
         <div className={`lg:w-[30vw] h-full fixed left-0 top-0 shadow-sm shadow-slate-400 px-6 py-6 overflow-y-scroll
