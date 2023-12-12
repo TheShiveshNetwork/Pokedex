@@ -17,17 +17,16 @@ const PokemonInfo = ({ selectedPokemon, setInfoOpen }) => {
         fetchPokemonEvolution(id, setPokemonEvolution)
     }, [selectedPokemon])
 
-    const themeSelValue = document.getElementById('themeSel').value;
 
     useEffect(() => {
-      if(themeSelValue === 'gameboy') {
-        setPokeArtwork('')
-      } else if (themeSelValue === 'home') {
-        setPokeArtwork('other/home')
-      } else {
-        setPokeArtwork('other/official-artwork')
-      }
-    }, [themeSelValue])
+        if(document.getElementById('themeSel').value === 'gameboy') {
+          setPokeArtwork('')
+        } else if (document.getElementById('themeSel').value === 'home') {
+          setPokeArtwork('other/home')
+        } else {
+          setPokeArtwork('other/official-artwork')
+        }
+    })
 
     const themeSelElement = document.getElementById('themeSel');
     let pokemonCardDivClass = 'bg-slate-200 border-slate-300';

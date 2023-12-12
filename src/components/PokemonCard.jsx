@@ -8,6 +8,7 @@ const PokemonCard = ({ pokemon, setOpenPokemonInfo, setSelectedPokemon }) => {
 
   const [imageLoaded, setImageLoaded] = useState(false)
   const [pokeArtwork, setPokeArtwork] = useState('other/official-artwork')
+  const [theme, setTheme] = useState('')
   const ref = useRef(null)
 
   useEffect(() => {
@@ -43,17 +44,15 @@ const PokemonCard = ({ pokemon, setOpenPokemonInfo, setSelectedPokemon }) => {
     }
   }, [pokemon, pokeArtwork])
 
-  const themeSelValue = document.getElementById('themeSel').value;
-
   useEffect(() => {
-    if(themeSelValue === 'gameboy') {
+    if(document.getElementById('themeSel').value === 'gameboy') {
       setPokeArtwork('')
-    } else if (themeSelValue === 'home') {
+    } else if (document.getElementById('themeSel').value === 'home') {
       setPokeArtwork('other/home')
     } else {
       setPokeArtwork('other/official-artwork')
     }
-  }, [themeSelValue])
+  })
 
   const themeSelElement = document.getElementById('themeSel');
   let pokemonCardDivClass = 'bg-slate-200 border-slate-300';
