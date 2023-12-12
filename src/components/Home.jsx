@@ -102,6 +102,11 @@ useEffect(() => {
     className={
         `xl:px-24 px-10 mt-8 py-4 sticky top-0 dark:bg-slate-900  ${openPokemonInfo ? 'xl:pl-10 w-[70%] relative left-[30%]' : ''}`
     }>
+            <div
+                className={
+                    `xl:px-24 px-10 mt-8 py-4 sticky top-0 bg-white dark:bg-slate-900 ${openPokemonInfo ? 'xl:pl-10 w-[70%] relative left-[30%]' : ''} z-[99999]`
+                }>
+
                 <input
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
