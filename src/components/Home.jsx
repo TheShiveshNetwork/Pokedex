@@ -16,78 +16,29 @@ const Home = () => {
     const [generation, setGeneration] = useState('');
     const [gameVersion, setGameVersion] = useState('');
     const [isDarkMode, setIsDarkMode] = useState(false);
-    const [isGameboyTheme, setIsGameboyTheme] = useState(false);
-    const [isHomeTheme, setIsHomeTheme] = useState(false);
-    const [theme, setTheme] = useState('');
 
-    const handleTheme = () => {
-        const theme = document.getElementById('themeSel').value;
-        handleThemeChange(theme);
+    const toggleDarkMode = () => {
+      const newTheme = !isDarkMode;
+    setIsDarkMode(newTheme);
+    localStorage.setItem('isDarkMode', JSON.stringify(newTheme));
     };
 
     useEffect(() => {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme !== null) {
-            setTheme(savedTheme);
-        }
-    }, []);
-
-    const handleThemeChange = (newTheme) => {
-        setTheme(newTheme);
-        localStorage.setItem('theme', newTheme);
-    };
-
-useEffect(() => {
-    if (theme === 'dark') {
-        document.documentElement.classList.add('dark', 'bg-slate-900', 'text-slate-50');
-    } else {
-        document.documentElement.classList.remove('dark', 'bg-slate-900', 'text-slate-50');
-    } 
-}, [theme]);
-
-useEffect(() => {
-    if (theme === 'gameboy') {
-        document.documentElement.classList.add('gb', 'bg-gameboy-bg', 'text-gameboy-bg');
-    } else {
-        document.documentElement.classList.remove('gb', 'bg-gameboy-bg', 'text-gameboy-bg');
-    } 
-}, [theme]);
-
-useEffect(() => {
-    if (theme === 'home') {
-        document.documentElement.classList.add('home', 'bg-gradient-to-r', 'from-home-bg', 'via-home-midbg', 'to-home-endbg',  'text-home-text');
-    } else {
-        document.documentElement.classList.remove('home', 'bg-gradient-to-r', 'from-home-bg', 'via-home-midbg', 'to-home-endbg', 'text-home-text');
-    } 
-}, [theme]);
+        if (isDarkMode) {
+            document.documentElement.classList.add('dark', 'bg-slate-900', 'text-slate-50');
+          } else {
+            document.documentElement.classList.remove('dark', 'bg-slate-900', 'text-slate-50');
+          }
+    }, [isDarkMode]);
 
     useEffect(() => {
         fetchPokemons(setPokemons, setLoading, generation);
     }, [generation]);
 
     useEffect(() => {
-        const storedTheme = localStorage.getItem('theme');
-        switch (storedTheme) {
-            case 'dark':
-                setIsDarkMode(true);
-                setIsGameboyTheme(false);
-                setIsHomeTheme(false);
-                break;
-            case 'gameboy':
-                setIsGameboyTheme(true);
-                setIsDarkMode(false);
-                setIsHomeTheme(false);
-                break;
-            case 'home':
-                setIsHomeTheme(true);
-                setIsDarkMode(false);
-                setIsGameboyTheme(false);
-                break;
-            default:
-                setIsDarkMode(false);
-                setIsGameboyTheme(false);
-                setIsHomeTheme(false);
-                break;
+        const storedTheme = localStorage.getItem('isDarkMode');
+        if (storedTheme) {
+          setIsDarkMode(JSON.parse(storedTheme));
         }
       }, []);
 
@@ -98,15 +49,10 @@ useEffect(() => {
 
     return !loading ?
         <>
-<div
-    className={
-        `xl:px-24 px-10 mt-8 py-4 sticky top-0 dark:bg-slate-900  ${openPokemonInfo ? 'xl:pl-10 w-[70%] relative left-[30%]' : ''}`
-    }>
             <div
                 className={
                     `xl:px-24 px-10 mt-8 py-4 sticky top-0 bg-white dark:bg-slate-900 ${openPokemonInfo ? 'xl:pl-10 w-[70%] relative left-[30%]' : ''} z-[99999]`
                 }>
-
                 <input
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
@@ -115,6 +61,7 @@ useEffect(() => {
                     className='outline-none w-full border-2 py-3 px-5 text-lg rounded-full 
                     dark:bg-slate-800 dark:text-slate-50'
                 />
+
                 <div className='flex justify-center flex-col md:flex-row md:justify-end gap-3 mt-3'>
                     <SelectCompoent
                         valueFor={"generation"}
@@ -126,12 +73,9 @@ useEffect(() => {
                         value={gameVersion}
                         setValue={setGameVersion}
                     />
-                    <SelectCompoent
-                        valueFor={"theme"}
-                        value={theme}
-                        setValue={handleThemeChange}
-                        id={"themeSel"}
-                    />
+                    <button onClick={toggleDarkMode} className='text-xl mg-5'>
+                        {isDarkMode ? `☀` : `🌕`}
+                    </button> 
                 </div>
             </div>
 

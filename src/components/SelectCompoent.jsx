@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const SelectCompoent = ({ valueFor, value, setValue, id = null }) => {
+const SelectCompoent = ({ valueFor, value, setValue }) => {
     const [selectOptionClicked, setSelectOptionClicked] = useState(false);
 
     const handleSelectChange = (e) => {
@@ -14,7 +14,6 @@ const SelectCompoent = ({ valueFor, value, setValue, id = null }) => {
         <select
             value={value}
             onChange={(e) => handleSelectChange(e)}
-            id={id}
             // className={`outline-none border-2 py-1 px-5 text-md rounded-full cursor-pointer ${selectOptionClicked && 'bg-red-400'}`}
             className={`outline-none border-2 py-1 px-5 text-md rounded-full cursor-pointer dark:bg-slate-800 dark:text-slate-50`}
         >
@@ -32,7 +31,7 @@ const SelectCompoent = ({ valueFor, value, setValue, id = null }) => {
                         <option value="809,96">Generation 8</option>
                         <option value="905,112">Generation 9</option>
                     </>
-                    : valueFor === "gameVersion" ?
+                    : valueFor === "gameVersion" &&
                     <>
                         <option value="">All Versions</option>
                         <option value="red">Red</option>
@@ -70,13 +69,6 @@ const SelectCompoent = ({ valueFor, value, setValue, id = null }) => {
                         <option value="legends-arceus">Legends Arceus</option>
                         <option value="scarlet">Scarlet</option>
                         <option value="violet">Violet</option>
-                    </>
-                    : valueFor === "theme" &&
-                    <>
-                        <option value="">Light</option>
-                        <option value="dark" selected={value == "dark"}>Dark</option>
-                        <option value="gameboy" selected={value == "gameboy"}>Gameboy</option>
-                        <option value="home" selected={value == "home"}>Pokemon Home</option>
                     </>
             }
 
