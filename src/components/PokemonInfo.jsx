@@ -7,6 +7,7 @@ const PokemonInfo = ({ selectedPokemon, setInfoOpen }) => {
     const [loadingInfo, setLoadingInfo] = useState(false)
     const [pokemonAbout, setPokemonAbout] = useState('')
     const [pokemonEvolution, setPokemonEvolution] = useState({})
+    const [pokeArtwork, setPokeArtwork] = useState('other/official-artwork')
 
     const id = selectedPokemon.url.replace('https://pokeapi.co/api/v2/pokemon/', '').replace('/', '')
 
@@ -16,12 +17,34 @@ const PokemonInfo = ({ selectedPokemon, setInfoOpen }) => {
         fetchPokemonEvolution(id, setPokemonEvolution)
     }, [selectedPokemon])
 
+    const themeSelValue = document.getElementById('themeSel').value;
+
+    useEffect(() => {
+      if(themeSelValue === 'gameboy') {
+        setPokeArtwork('')
+      } else if (themeSelValue === 'home') {
+        setPokeArtwork('other/home')
+      } else {
+        setPokeArtwork('other/official-artwork')
+      }
+    }, [themeSelValue])
+
+    const themeSelElement = document.getElementById('themeSel');
+    let pokemonCardDivClass = 'bg-slate-200 border-slate-300';
+    if(themeSelElement && themeSelElement.value === 'gameboy') {
+      pokemonCardDivClass = 'bg-gameboy-bg text-slate-200';
+    } else if (themeSelElement && themeSelElement.value === 'home') {
+      pokemonCardDivClass = 'bg-home-card shadow-slate-200';
+    } else {
+      pokemonCardDivClass = 'bg-slate-200 border-slate-300';
+    }
+
     // console.log(pokemonInfo)
     console.log(pokemonEvolution)
 
     return !loadingInfo ?
-        <div className='lg:w-[30vw] h-full fixed left-0 top-0 bg-slate-200 shadow-sm shadow-slate-400 px-6 py-6 overflow-y-scroll
-        dark:bg-slate-800 dark:text-slate-50'>
+        <div className={`lg:w-[30vw] h-full fixed left-0 top-0 shadow-sm shadow-slate-400 px-6 py-6 overflow-y-scroll
+        dark:bg-slate-800 dark:text-slate-50 ${pokemonCardDivClass}`}>
             <div
             className='absolute top-5 right-5 bg-slate-400/50 shadow-md h-14 w-14 p-2 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-500/60 transition-all
             dark:bg-slate-600 dark:hover:bg-slate-500 dark:text-slate-50'
@@ -31,7 +54,7 @@ const PokemonInfo = ({ selectedPokemon, setInfoOpen }) => {
             </div>
             <div className='w-full flex flex-col gap-8 items-center justify-center '>
                 <img
-                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeArtwork}/${id}.png`}
                     alt="image"
                     className='w-[70%]'
                     onError={(e) => {
