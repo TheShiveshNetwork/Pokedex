@@ -42,7 +42,7 @@ const PokemonInfo = ({ selectedPokemon, setInfoOpen }) => {
     console.log(pokemonEvolution)
 
     return !loadingInfo ?
-        <div className={`lg:w-[30vw] h-full fixed left-0 top-0 shadow-sm shadow-slate-400 px-6 py-6 overflow-y-scroll
+        <div className={`lg:w-[30vw] h-full z-[100000] fixed left-0 top-0 shadow-sm shadow-slate-400 px-6 py-6 overflow-y-scroll
         dark:bg-slate-800 dark:text-slate-50 ${pokemonCardDivClass}`}>
             <div
             className='absolute top-5 right-5 bg-slate-400/50 shadow-md h-14 w-14 p-2 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-500/60 transition-all
