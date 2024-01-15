@@ -52,19 +52,19 @@ git status -s
 git add .
 ```
 
-5. Commit your changes (add decent message )
+7. Commit your changes (add decent message )
 
 ```sh
 git commit -m "<EXPLAIN-YOUR_CHANGES>"
 ```
 
-6. Push your changes
+8. Push your changes
 
 ```sh
 git push origin <branch-name>
 ```
 
-7. Open a Pull Request
+9. Open a Pull Request
 
 - Make a pull request! (compare your branch with the owner main branch)
 # Pull requests guidlines
